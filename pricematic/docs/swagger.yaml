@@ -1,0 +1,144 @@
+definitions:
+  models.Product:
+    properties:
+      name:
+        type: string
+      price:
+        type: number
+    type: object
+info:
+  contact:
+    email: mmunozl88@gmail.com
+    name: Miguel Muñoz
+  description: Swagger docs
+  title: API
+  version: "1.0"
+paths:
+  /api/v1/products:
+    get:
+      consumes:
+      - application/json
+      description: Get all products.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Product'
+            type: array
+      summary: get all products from database.
+      tags:
+      - Products
+    post:
+      consumes:
+      - application/json
+      description: Create a new product.
+      parameters:
+      - description: Product
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.Product'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Product'
+      summary: create a new product
+      tags:
+      - Product
+  /api/v1/products/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete product by given id.
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: number
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: ok
+          schema:
+            type: string
+      summary: delete product by given id
+      tags:
+      - Product
+    get:
+      consumes:
+      - application/json
+      description: Get product by given id.
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Product'
+      summary: get product from database by given id or 404.
+      tags:
+      - Product
+    patch:
+      consumes:
+      - application/json
+      description: Update values for product by id.
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: number
+      - description: Product
+        in: body
+        name: product
+        schema:
+          $ref: '#/definitions/models.Product'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: ok
+          schema:
+            type: string
+      summary: update values for product by id
+      tags:
+      - Product
+  /api/v1/products/{id}/prices:
+    get:
+      consumes:
+      - application/json
+      description: Get the price history by given product id.
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Product'
+            type: array
+      summary: get the price history by given product id
+      tags:
+      - Product
+swagger: "2.0"

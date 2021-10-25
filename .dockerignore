@@ -1,0 +1,12 @@
+**/.env
+**/.dockerignore
+**/.vscode
+**/docker-compose*
+**/Dockerfile
+README.md
+licence
+**/swag
+**/.images
+**/node_modules
+**/.git
+**/.gitignore
